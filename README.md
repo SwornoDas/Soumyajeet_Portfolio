@@ -29,13 +29,16 @@ It reflects my work, learning journey, and passion for building responsive and u
 
 ## 📂 Project Structure
 ```
-Portfolio/
+Self portfolio/
 │── index.html
 │── styles.css
 │── script.js
-│── images/
+│── README.md
+│── robots.txt
+│── sitemap.xml
+│── SEO_SETUP_GUIDE.md
 │── assets/
-    └── CV.pdf
+│   └── images/
 ```
 
 ---
