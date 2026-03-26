@@ -125,6 +125,84 @@ const debouncedResize = debounce(() => {
 
 window.addEventListener('resize', debouncedResize);
 
+// ------------------------------
+// UX helpers for navigation and scrolling
+// ------------------------------
+
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primaryNav');
+const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+const scrollProgress = document.getElementById('scrollProgress');
+const backToTop = document.getElementById('backToTop');
+
+// Mobile menu open/close
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close menu when a user clicks any navigation link
+  navItems.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close mobile menu when clicking outside it
+  document.addEventListener('click', (event) => {
+    if (!navLinks.classList.contains('open')) return;
+    const clickedInsideMenu = navLinks.contains(event.target) || menuToggle.contains(event.target);
+    if (!clickedInsideMenu) {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// Update progress bar and "back to top" visibility while scrolling
+function updateScrollUI() {
+  const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollY = window.scrollY;
+  const progress = pageHeight > 0 ? (scrollY / pageHeight) * 100 : 0;
+
+  if (scrollProgress) {
+    scrollProgress.style.width = `${Math.min(progress, 100)}%`;
+  }
+
+  if (backToTop) {
+    backToTop.classList.toggle('visible', scrollY > 500);
+  }
+}
+
+// Highlight the nav item for the section currently visible on screen
+function updateActiveNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const scrollPosition = window.scrollY + 120;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    const link = document.querySelector(`.nav-links a[href="#${section.id}"]`);
+
+    if (!link) return;
+    const isActive = scrollPosition >= sectionTop && scrollPosition < sectionBottom;
+    link.classList.toggle('active', isActive);
+  });
+}
+
+window.addEventListener('scroll', () => {
+  updateScrollUI();
+  updateActiveNav();
+});
+
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -388,6 +466,8 @@ window.addEventListener('load', function() {
   createOrbitRings();
   createMovingParticles();
   createCircuitLines();
+  updateScrollUI();
+  updateActiveNav();
   
   // Track page load time
   if (typeof gtag !== 'undefined' && window.performance) {
