@@ -107,6 +107,12 @@
   </script>
 </head>
 <body>
+  <!-- Skip link helps keyboard users jump directly to content -->
+  <a href="#home" class="skip-link">Skip to main content</a>
+
+  <!-- Shows reading progress while scrolling -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- Cyberpunk background elements -->
   <div class="cyber-grid"></div>
   <div class="circuit-lines" id="circuitLines"></div>
@@ -121,7 +127,10 @@
     <div class="container">
       <nav>
         <a href="#" class="logo">SOUMYAJEET MONDAL<span></span></a>
-        <div class="nav-links">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="nav-links" id="primaryNav">
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#journey">Journey</a>
@@ -157,7 +166,7 @@
         <div class="hero-image">
           <div class="photo-container" id="photoContainer">
             <div class="main-photo-frame">
-              <img src="./images/self.png" alt="Soumyajeet Mondal - Full-Stack Developer" class="main-photo">
+              <img src="./images/self.png" alt="Soumyajeet Mondal - Full-Stack Developer" class="main-photo" decoding="async">
             </div>
             <div class="scan-line"></div>
           </div>
@@ -310,7 +319,7 @@
       <!-- Project 1: Canvas collab by SJM-->
       <div class="project-card">
         <div class="project-img">
-          <img src="images/canvas-collab.png" alt="Canvas Collab by SJM - Real-time Collaborative Drawing Application">
+          <img src="images/canvas-collab.png" alt="Canvas Collab by SJM - Real-time Collaborative Drawing Application" loading="lazy" decoding="async">
         </div>
         <div class="project-info">
           <h3>CANVAS COLLAB BY SJM</h3>
@@ -331,7 +340,7 @@
       <!-- Project 2: Ace My Study -->
       <div class="project-card">
         <div class="project-img">
-          <img src="images/ace-my-study.png" alt="Ace My Study - Study Planning Application">
+          <img src="images/ace-my-study.png" alt="Ace My Study - Study Planning Application" loading="lazy" decoding="async">
         </div>
         <div class="project-info">
           <h3>ACE MY STUDY</h3>
@@ -350,7 +359,7 @@
       <!-- Project 3: Health Monitor Web App -->
       <div class="project-card">
         <div class="project-img">
-          <img src="images/Smart-Community.png" alt="Health Monitor Web App — Interactive Wellness Tracker">
+          <img src="images/Smart-Community.png" alt="Health Monitor Web App — Interactive Wellness Tracker" loading="lazy" decoding="async">
         </div>
         <div class="project-info">
           <h3>HEALTH MONITOR WEB APP</h3>
@@ -370,7 +379,7 @@
       <!-- Project 4: Atmos Weather App -->
       <div class="project-card">
         <div class="project-img">
-          <img src="images/atmos-weather.png" alt="Atmos Weather App - Real-time Weather Application">
+          <img src="images/atmos-weather.png" alt="Atmos Weather App - Real-time Weather Application" loading="lazy" decoding="async">
         </div>
         <div class="project-info">
           <h3>ATMOS BY SJM</h3>
@@ -389,7 +398,7 @@
       <!-- Project 5: Python Quiz App -->
       <div class="project-card">
         <div class="project-img">
-          <img src="images/Quiz-app.png" alt="Quiz app Using Python">
+          <img src="images/Quiz-app.png" alt="Quiz app Using Python" loading="lazy" decoding="async">
         </div>
         <div class="project-info">
           <h3>PYTHON QUIZ APP</h3>
@@ -407,7 +416,7 @@
       <!-- Project 6: Math Calculator -->
       <div class="project-card">
         <div class="project-img">
-          <img src="images/calculator.png" alt="Math Calculator - Web-based Calculator Application">
+          <img src="images/calculator.png" alt="Math Calculator - Web-based Calculator Application" loading="lazy" decoding="async">
         </div>
         <div class="project-info">
           <h3>MATH CALCULATOR</h3>
@@ -426,7 +435,7 @@
       <!-- Project 7: Coming Soon -->
       <div class="project-card">
         <div class="project-img">
-          <img src="images/coming-soon.png" alt="Coming Soon Project">
+          <img src="images/coming-soon.png" alt="Coming Soon Project" loading="lazy" decoding="async">
         </div>
         <div class="project-info">
           <h3>COMING SOON</h3>
@@ -511,6 +520,11 @@
       <div class="copyright">&copy; 2026 Soumyajeet Mondal. All rights reserved.</div>
     </div>
   </footer>
+
+  <!-- Quick return button for long pages -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
 
   <script src="script.js"></script>
 </body>
